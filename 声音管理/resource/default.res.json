@@ -1,0 +1,70 @@
+{
+	"groups": [
+		{
+			"keys": "description_json,btn_off_png,btn_on_png,back_mp3,bgm_mp3,btn_click_mp3,btn_tochoose_mp3,fly_mp3,hold_mp3,kick_mp3,star_mp3,tochoose_mp3",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/btn_off.png",
+			"type": "image",
+			"name": "btn_off_png"
+		},
+		{
+			"url": "assets/btn_on.png",
+			"type": "image",
+			"name": "btn_on_png"
+		},
+		{
+			"url": "assets/sound/back.mp3",
+			"type": "sound",
+			"name": "back_mp3"
+		},
+		{
+			"url": "assets/sound/bgm.mp3",
+			"type": "sound",
+			"name": "bgm_mp3"
+		},
+		{
+			"url": "assets/sound/btn_click.mp3",
+			"type": "sound",
+			"name": "btn_click_mp3"
+		},
+		{
+			"url": "assets/sound/btn_tochoose.mp3",
+			"type": "sound",
+			"name": "btn_tochoose_mp3"
+		},
+		{
+			"url": "assets/sound/fly.mp3",
+			"type": "sound",
+			"name": "fly_mp3"
+		},
+		{
+			"url": "assets/sound/hold.mp3",
+			"type": "sound",
+			"name": "hold_mp3"
+		},
+		{
+			"url": "assets/sound/kick.mp3",
+			"type": "sound",
+			"name": "kick_mp3"
+		},
+		{
+			"url": "assets/sound/star.mp3",
+			"type": "sound",
+			"name": "star_mp3"
+		},
+		{
+			"url": "assets/sound/tochoose.mp3",
+			"type": "sound",
+			"name": "tochoose_mp3"
+		}
+	]
+}
