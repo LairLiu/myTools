@@ -103,24 +103,7 @@ class Main extends egret.DisplayObjectContainer {
             { name: "btn_click", needLoad: true },
         );
 
-        function sleep(time: number) {
-            return new Promise(resolve => {
-                egret.setTimeout(() => {
-                    resolve();
-                }, this, time);
-            });
-        }
-        await sleep(1000);
-
-        SoundControl.playSound("bgm", -1);
-
-        await sleep(1000);
-
-        // SoundControl.volume = 0.5;
-7
-        await sleep(1000);
-
-        // SoundControl.volume = 0.2;
+        await Tools.sleep(1000);
     }
 
     /**

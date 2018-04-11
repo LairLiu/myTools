@@ -10,57 +10,41 @@ r.prototype = e.prototype, t.prototype = new r();
 };
 var soundCtrlBtn = (function (_super) {
     __extends(soundCtrlBtn, _super);
-    function soundCtrlBtn(onBtnTextureName, offBtnTextureName, sound, playNum) {
-        if (playNum === void 0) { playNum = -1; }
+    function soundCtrlBtn(onBtnTextureName, offBtnTextureName, playFunc, pauseFunc, pause) {
+        if (pause === void 0) { pause = false; }
         var _this = _super.call(this) || this;
         _this.onBtnTextureName = onBtnTextureName;
         _this.offBtnTextureName = offBtnTextureName;
-        _this._playNum = playNum;
-        _this._sound = sound;
-        _this.playType = "pause";
-        _this.createBtn();
+        _this.playFunc = playFunc;
+        _this.pauseFunc = pauseFunc;
+        _this.createBtn(pause);
         return _this;
     }
-    soundCtrlBtn.prototype.createBtn = function () {
-        this.setTexture();
-        this.touchEnabled = true;
-        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.startPlay, this);
-        // this.addEventListener(egret.TouchEvent.TOUCH_RELEASE_OUTSIDE, this.clickFunc, this);
-    };
-    soundCtrlBtn.prototype.setTexture = function () {
-        var textureName = this.playType == "play" ? this.onBtnTextureName : this.offBtnTextureName;
-        this.texture = RES.getRes(textureName);
-    };
-    soundCtrlBtn.prototype.startPlay = function () {
-        if (this.playType == "pause") {
-            this.playType = "play";
-            if (!this._startTime)
-                this._startTime = 0;
-            if (this._sound)
-                this._soundChannel = this._sound.play(this._startTime, this._playNum);
+    soundCtrlBtn.prototype.createBtn = function (pause) {
+        if (pause) {
+            this.playType = "pause";
+            this.texture = RES.getRes(this.offBtnTextureName);
         }
         else {
-            if (this._soundChannel) {
-                this._startTime = this._soundChannel.position;
-                this._soundChannel.stop();
-            }
-            else {
-                // console.log(this.sound['name'], "没有声音可供停止");
-            }
-            this.playType = "pause";
+            this.playFunc();
+            this.playType = "paly";
+            this.texture = RES.getRes(this.onBtnTextureName);
         }
-        this.setTexture();
+        this.touchEnabled = true;
+        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.changeType, this);
     };
-    Object.defineProperty(soundCtrlBtn.prototype, "playType", {
-        get: function () {
-            return this._playType;
-        },
-        set: function (type) {
-            this._playType = type;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    soundCtrlBtn.prototype.changeType = function () {
+        if (this.playType == "paly") {
+            this.pauseFunc();
+            this.playType = "pause";
+            this.texture = RES.getRes(this.offBtnTextureName);
+        }
+        else {
+            this.playFunc();
+            this.playType = "paly";
+            this.texture = RES.getRes(this.onBtnTextureName);
+        }
+    };
     return soundCtrlBtn;
 }(egret.Bitmap));
 __reflect(soundCtrlBtn.prototype, "soundCtrlBtn");

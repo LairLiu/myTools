@@ -4,6 +4,15 @@ class SoundControl extends egret.HashObject {
     private static soundChannelList: egret.SoundChannel[] = [];
     private static _volume: number = 1;
 
+    /**
+     * 加载音频
+     * {name：音频名称，needLoad：是否需要加载}
+     * 
+     * @static
+     * @param {...{ name: string, needLoad?: boolean }[]} arg {name：音频名称，needLoad：是否需要加载}
+     * @returns 
+     * @memberof SoundControl
+     */
     public static load(...arg: { name: string, needLoad?: boolean }[]) {
         if (arg.length <= 0) return;
 
@@ -35,19 +44,28 @@ class SoundControl extends egret.HashObject {
         }
     }
 
-    public static playSound(soundName: string, loop: number = 1, startTime: number = 0) {
+    /**
+     * 播放音乐
+     * 
+     * @static
+     * @param {string} soundName 
+     * @param {number} [loop=1] 
+     * @param {number} [startTime=0] 
+     * @memberof SoundControl
+     */
+    public static play(soundName: string, loop: number = 1, startTime: number = 0) {
 
         if (this.soundList[soundName]) {
 
             this.soundChannelList[soundName] = this.soundList[soundName].play(startTime, loop);
             this.soundChannelList[soundName].volume = this._volume;
+        } else {
 
-            console.log("value", this.soundChannelList[soundName].volume);
-
+            console.log(soundName, "声音不存在或未加载完成!");
         }
     }
 
-    public static stopSound(soundName?: string) {
+    public static stop(soundName?: string) {
         if (!soundName) {
             for (let soundIndex in this.soundChannelList) {
 

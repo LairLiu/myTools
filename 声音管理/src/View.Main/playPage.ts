@@ -13,7 +13,7 @@ class playPage extends egret.DisplayObjectContainer {
         return this.playPage;
     }
 
-    private createChildren() {
+    private async createChildren() {
 
         var bg: egret.Shape = new egret.Shape();
         bg.graphics.beginFill(0xffffff, 1);
@@ -25,10 +25,9 @@ class playPage extends egret.DisplayObjectContainer {
 
         var bgmText: egret.TextField = new egret.TextField();
 
-
-        var btn = new soundCtrlBtn("btn_on_png", "btn_off_png", bgm);
+        var btn = new soundCtrlBtn("btn_on_png", "btn_off_png", () => { SoundControl.play("kick", 1, 0) }, () => { SoundControl.stop() });
         this.addChild(btn);
-        // btn.startPlay();
+
         btn.x = 400;
         btn.y = 200;
     }

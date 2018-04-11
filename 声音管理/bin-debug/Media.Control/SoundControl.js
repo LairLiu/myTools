@@ -13,6 +13,15 @@ var SoundControl = (function (_super) {
     function SoundControl() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * 加载音频
+     * {name：音频名称，needLoad：是否需要加载}
+     *
+     * @static
+     * @param {...{ name: string, needLoad?: boolean }[]} arg {name：音频名称，needLoad：是否需要加载}
+     * @returns
+     * @memberof SoundControl
+     */
     SoundControl.load = function () {
         var _this = this;
         var arg = [];
@@ -46,16 +55,27 @@ var SoundControl = (function (_super) {
             _loop_1(soundData);
         }
     };
-    SoundControl.playSound = function (soundName, loop, startTime) {
+    /**
+     * 播放音乐
+     *
+     * @static
+     * @param {string} soundName
+     * @param {number} [loop=1]
+     * @param {number} [startTime=0]
+     * @memberof SoundControl
+     */
+    SoundControl.play = function (soundName, loop, startTime) {
         if (loop === void 0) { loop = 1; }
         if (startTime === void 0) { startTime = 0; }
         if (this.soundList[soundName]) {
             this.soundChannelList[soundName] = this.soundList[soundName].play(startTime, loop);
             this.soundChannelList[soundName].volume = this._volume;
-            console.log("value", this.soundChannelList[soundName].volume);
+        }
+        else {
+            console.log(soundName, "声音不存在或未加载完成!");
         }
     };
-    SoundControl.stopSound = function (soundName) {
+    SoundControl.stop = function (soundName) {
         if (!soundName) {
             for (var soundIndex in this.soundChannelList) {
                 this.soundChannelList[soundIndex].stop();

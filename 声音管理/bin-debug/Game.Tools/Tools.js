@@ -9,6 +9,14 @@ var Tools = (function () {
         bitmap.texture = RES.getRes(textureName);
         return bitmap;
     };
+    Tools.sleep = function (time) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            egret.setTimeout(function () {
+                resolve();
+            }, _this, time);
+        });
+    };
     return Tools;
 }());
 __reflect(Tools.prototype, "Tools");

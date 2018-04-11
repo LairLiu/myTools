@@ -5,4 +5,12 @@ class Tools {
 
         return bitmap;
     }
+
+    public static sleep(time: number) {
+        return new Promise(resolve => {
+            egret.setTimeout(() => {
+                resolve();
+            }, this, time);
+        });
+    }
 }

@@ -147,30 +147,13 @@ var Main = (function (_super) {
      */
     Main.prototype.createGameScene = function () {
         return __awaiter(this, void 0, void 0, function () {
-            function sleep(time) {
-                var _this = this;
-                return new Promise(function (resolve) {
-                    egret.setTimeout(function () {
-                        resolve();
-                    }, _this, time);
-                });
-            }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.addChild(playPage.getInstance());
                         SoundControl.load({ name: "bgm", needLoad: true }, { name: "kick", needLoad: true }, { name: "star", needLoad: true }, { name: "back", needLoad: true }, { name: "hold", needLoad: true }, { name: "fly", needLoad: true }, { name: "btn_tochoose", needLoad: true }, { name: "btn_click", needLoad: true });
-                        return [4 /*yield*/, sleep(1000)];
+                        return [4 /*yield*/, Tools.sleep(1000)];
                     case 1:
-                        _a.sent();
-                        SoundControl.playSound("bgm", -1);
-                        return [4 /*yield*/, sleep(1000)];
-                    case 2:
-                        _a.sent();
-                        // SoundControl.volume = 0.5;
-                        7;
-                        return [4 /*yield*/, sleep(1000)];
-                    case 3:
                         _a.sent();
                         return [2 /*return*/];
                 }
