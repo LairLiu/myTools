@@ -61,19 +61,19 @@ namespace aStar {
                     startY = Math.max(0, node.y - 1),
                     endY = Math.min(this.grid.rowNums - 1, node.y + 1);
 
-                console.log(startX, endX, startY, endY);
+                // console.log(startX, endX, startY, endY);
 
                 for (let i = startX; i <= endX; i++) {
                     for (let j = startY; j <= endY; j++) {
-                        console.log("0计算", i, j);
+                        // console.log("0计算", i, j);
 
                         // 不让斜着走
                         if (i != node.x && j != node.y) {
 
-                            console.log("斜着走", i, j, "\r\n\r\n");
+                            // console.log("斜着走", i, j, "\r\n\r\n");
                             continue;
                         }
-                        console.warn("1计算", i, j);
+                        // console.warn("1计算", i, j);
 
                         let test: Node = this.grid.getNode(i, j);
 
@@ -83,10 +83,10 @@ namespace aStar {
                             !this.grid.getNode(test.x, node.y).walkable ||
                             !this.grid.getNode(node.x, test.y).walkable) {
 
-                            console.log("第二轮筛选", i, j, "\r\n\r\n");
+                            // console.log("第二轮筛选", i, j, "\r\n\r\n");
                             continue;
                         }
-                        console.error("2计算", i, j);
+                        // console.error("2计算", i, j);
 
                         // 判断要使用的成本乘数 直走/斜走
                         let cost: number = this.straightCost;
@@ -94,13 +94,13 @@ namespace aStar {
                         if (!((node.x == test.x) || (node.y == test.y))) {
                             cost = this.diagCost;
                         }
-                        console.warn("3计算", i, j);
+                        // console.warn("3计算", i, j);
 
                         // 计算被检测点成本
                         let g = node.g + cost * test.costMultiplier;
                         let h = this.heuristic(test);
                         let f = g + h;
-                        console.log(g, h, f);
+                        // console.log(g, h, f);
 
                         // 检测两个表中是否存在该点，如果没有则将其添加到待检查表中
                         if (this.isOpen(test) || this.isClose(test)) {
@@ -118,19 +118,19 @@ namespace aStar {
                             test.parent = node;
                             this.openList.push(test);
                         }
-                        console.error(i, j, test.f);
+                        // console.error(i, j, test.f);
 
                     }
                 }
                 this.closeList.push(node);
 
-                console.log(this.openList);
-                console.log(this.closeList);
+                // console.log(this.openList);
+                // console.log(this.closeList);
 
                 let openLen = this.openList.length;
                 // 判断当前原点是否存在路径
                 if (openLen == 0) {
-                    console.log("path is notfound");
+                    // console.log("path is notfound");
                     return false;
                 };
                 // 将路径重新排序，成本越大的越前
@@ -146,7 +146,7 @@ namespace aStar {
                 // 将原点的最优的检测点（路径）设置为下一次检测的原点
                 node = <Node>this.openList.shift();
             }
-
+            this.buildPath();
             return true;
         }
         /** 
@@ -154,12 +154,15 @@ namespace aStar {
          * 将路径中的每个父节点添加到path数组中。从终点的父节点往前推导一直到起点，形成一条路径
          */
         private buildPath() {
-            this.path = [];
+            this.path = new Array();
             let node = this.endNode;
+            // this.path.push(node);
             while (node != this.startNode) {
                 node = node.parent;
                 this.path.unshift(node);
             }
+            console.table(this.path);
+
         }
 
         /**是否待检查 */

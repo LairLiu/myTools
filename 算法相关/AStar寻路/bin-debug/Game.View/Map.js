@@ -67,20 +67,28 @@ var Map = (function (_super) {
      * 点击事件，用于设置起点和终点
      */
     Map.prototype.onTouchTap = function (event) {
+        console.log("clisk");
         var nodeX = Math.floor(event.stageX / this.nodeSize), nodeY = Math.floor(event.stageY / this.nodeSize);
         this.grid.setEndNode(nodeX, nodeY);
         nodeX = Math.floor(this.body.x / this.nodeSize);
         nodeY = Math.floor(this.body.y / this.nodeSize);
         this.grid.setStartNode(nodeX, nodeY);
-        this.drawMap();
+        console.log("click2");
+        // this.drawMap();
         this.findPath();
     };
     /**
      * 寻找路径
      */
     Map.prototype.findPath = function () {
+        var startTime = egret.getTimer();
         var astar = new aStar.AStar();
+        console.log(1111);
         astar.findPath(this.grid);
+        console.log(2222);
+        console.log(egret.getTimer() - startTime);
+        // let path = astar.path;
+        // console.table(path);
         // if (!astar.findPath(this.grid)) {
         //     console.log("path is notfound");
         // } else {

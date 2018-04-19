@@ -71,6 +71,8 @@ class Map extends egret.DisplayObjectContainer {
      * 点击事件，用于设置起点和终点
      */
     private onTouchTap(event: egret.TouchEvent) {
+        console.log("clisk");
+
         let nodeX: number = Math.floor(event.stageX / this.nodeSize),
             nodeY: number = Math.floor(event.stageY / this.nodeSize);
         this.grid.setEndNode(nodeX, nodeY);
@@ -79,7 +81,9 @@ class Map extends egret.DisplayObjectContainer {
         nodeY = Math.floor(this.body.y / this.nodeSize);
         this.grid.setStartNode(nodeX, nodeY);
 
-        this.drawMap();
+        console.log("click2");
+
+        // this.drawMap();
 
         this.findPath();
     }
@@ -88,9 +92,15 @@ class Map extends egret.DisplayObjectContainer {
      * 寻找路径
      */
     private findPath() {
+        let startTime = egret.getTimer();
         let astar = new aStar.AStar();
-        astar.findPath(this.grid);
+        console.log(1111);
 
+        astar.findPath(this.grid);
+        console.log(2222);
+        console.log(egret.getTimer() - startTime);
+        // let path = astar.path;
+        // console.table(path);
         // if (!astar.findPath(this.grid)) {
         //     console.log("path is notfound");
         // } else {
