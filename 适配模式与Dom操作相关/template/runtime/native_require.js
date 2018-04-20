@@ -8,8 +8,12 @@ var game_file_list = [
 	"libs/modules/tween/tween.js",
 	"libs/modules/res/res.js",
 	"polyfill/promise.js",
+	"bin-debug/Game.Control/Dom.js",
+	"bin-debug/Game.Control/SmartScale.js",
+	"bin-debug/Game.Control/System.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
+	"bin-debug/View.Game/ScaleView.js",
 	//----auto game_file_list end----
 ];
 
