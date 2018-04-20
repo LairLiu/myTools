@@ -1,8 +1,9 @@
 /** 
+ * 屏幕适配控制类,需配合框架使用
+ * 
  * @author lka
  * @version 0.0.1 20180418
- * 
- * 屏幕适配控制类,需配合框架使用
+ * @class SmartScale
  */
 class SmartScale {
 
@@ -21,8 +22,11 @@ class SmartScale {
     /**白鹭canvas舞台高度 */
     public static stageHeight: number;
 
-    /** 
+    /**
      * 开启适配
+     * 
+     * @static
+     * @memberof SmartScale
      */
     public static open() {
         // 白鹭容器
@@ -66,10 +70,13 @@ class SmartScale {
             "适配值:", this.topDistance() / 2,
             "模式：", egret.MainContext.instance.stage.scaleMode);
     }
+
     /**
      * 检测设计尺寸与实际尺寸的差值
      * 
-     * @return {number} dis 差值
+     * @static
+     * @returns {number} 差值
+     * @memberof SmartScale
      */
     public static topDistance(): number {
         let dis = (egret.MainContext.instance.stage.height - this.stageHeight);

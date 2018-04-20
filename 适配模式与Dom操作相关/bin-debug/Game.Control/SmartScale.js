@@ -2,16 +2,20 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
 /**
+ * 屏幕适配控制类,需配合框架使用
+ *
  * @author lka
  * @version 0.0.1 20180418
- *
- * 屏幕适配控制类,需配合框架使用
+ * @class SmartScale
  */
 var SmartScale = (function () {
     function SmartScale() {
     }
     /**
      * 开启适配
+     *
+     * @static
+     * @memberof SmartScale
      */
     SmartScale.open = function () {
         // 白鹭容器
@@ -36,7 +40,7 @@ var SmartScale = (function () {
         }
         this.stageWidth = egret.MainContext.instance.stage.stageWidth;
         this.stageHeight = egret.MainContext.instance.stage.stageHeight;
-        // 此处为四个场景层
+        // 此处为需要适配的四个场景层
         // wy.GameInterface.sceneContainer.y -= this.topDistance() / 2;
         // wy.GameInterface.viewContainer.y -= this.topDistance() / 2;
         // wy.GameInterface.PopUpContainer.y -= this.topDistance() / 2;
@@ -45,10 +49,13 @@ var SmartScale = (function () {
     };
     /**
      * 检测设计尺寸与实际尺寸的差值
-     * @return {number} dis 差值
+     *
+     * @static
+     * @returns {number} 差值
+     * @memberof SmartScale
      */
     SmartScale.topDistance = function () {
-        var dis = (1236 - this.stageHeight);
+        var dis = (egret.MainContext.instance.stage.height - this.stageHeight);
         return dis;
     };
     return SmartScale;

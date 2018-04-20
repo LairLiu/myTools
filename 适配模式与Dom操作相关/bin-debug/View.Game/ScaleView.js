@@ -23,5 +23,5 @@ var ScaleView = (function (_super) {
         }
     };
     return ScaleView;
-}(viewParent));
+}(egret.DisplayObjectContainer));
 __reflect(ScaleView.prototype, "ScaleView");

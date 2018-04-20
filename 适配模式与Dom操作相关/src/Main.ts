@@ -119,8 +119,20 @@ class Main extends egret.DisplayObjectContainer {
     private createGameScene() {
         SmartScale.open();
 
-        this.addChild(new ScaleView());
+        this.stage.width = 640;
+        this.stage.height = 1236;
+
+        Dom.createImgElement("bg", "resource/assets/bg.jpg", 0, 100, 640, 1036, function () { console.log("click") });
+
+        Dom.createHtmlElement("icon", "img", 100, 100, 100, 100);
+
+        function clickFunc() {
+
+            console.log("click");
+        }
+
+        let icon = <HTMLImageElement>Dom.getDomById("icon");
+        icon.setAttribute("click", "clickFunc");
+        icon.setAttribute("src", "resource/assets/egret_icon.png");
     }
 }
-
-
