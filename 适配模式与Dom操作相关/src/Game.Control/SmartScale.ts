@@ -79,7 +79,8 @@ class SmartScale {
      * @memberof SmartScale
      */
     public static topDistance(): number {
-        let dis = (egret.MainContext.instance.stage.height - this.stageHeight);
+        // let dis = (egret.MainContext.instance.stage.height - this.stageHeight);
+        let dis = (1236 - this.stageHeight);
 
         return dis;
     }

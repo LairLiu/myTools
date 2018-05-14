@@ -59,6 +59,7 @@ class SoundControl extends egret.HashObject {
 
             this.soundChannelList[soundName] = this.soundList[soundName].play(startTime, loop);
             this.soundChannelList[soundName].volume = this._volume;
+            this.soundChannelList[soundName].addEventListener(egret.Event.SOUND_COMPLETE, this.onSoundComplete, this);
         } else {
 
             console.log(soundName, "声音不存在或未加载完成!");
@@ -88,5 +89,24 @@ class SoundControl extends egret.HashObject {
     }
     public static get volume(): number {
         return this._volume;
+    }
+
+    private static onSoundComplete(e: egret.Event) {
+        let url: string = e.currentTarget.$url;
+        let end = url.indexOf(".")
+        // console.log(end);
+
+        let soundName = url.substring(22, end);
+        // console.log(soundName);
+        // console.log(soundName, "isend");
+
+        // delete this.soundList[soundName];
+        delete this.soundChannelList[soundName];
+        // console.log(this.soundList);
+        // console.log(this.soundChannelList);
+
+        if (soundName == "bgm") {
+            this.play("bgm", 1, 0);
+        };
     }
 }
